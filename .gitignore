@@ -1,0 +1,33 @@
+# Local Python environment and generated artifacts
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.build/
+/build/
+/dist/
+/data/processed/
+/figures/
+
+# Local settings and secrets
+.env
+.env.*
+!.env.example
+.pypirc
+*.pem
+*.key
+/.vscode/
+/.idea/
+/.agents/
+/.codex/
+/AGENTS.md
+
+# Keep only the method documents needed by the reproducible runner.
+# README.md, MODEL_CONTRACT.md and data/raw/README.md remain included.
+/Docs/*
+!/Docs/COMPANY_INPUT_CONTRACT.md
+!/Docs/THEORY_REVIEW.md
+!/Docs/SHARED_CAPACITY_BOUND.md
+!/Docs/LITERATURE_COMPARISON.md
+!/Docs/RESEARCH_PACKAGE.md

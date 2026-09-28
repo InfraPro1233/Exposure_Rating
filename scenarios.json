@@ -1,0 +1,87 @@
+{
+  "provenance": "Hypothetical scenarios, not estimates of industry or real-firm behavior.",
+  "price_multipliers": [0.5, 0.75, 1, 1.25, 1.5, 2, 3, 6, 12],
+  "agent_shares": [0.1, 0.25, 0.5, 0.75, 0.9],
+  "retained_capacities": [1, 0.75, 0.5, 0.25, 0.1],
+  "capacity_comparison": {
+    "incumbent_fixed": 100,
+    "incumbent_provider_spend": 80,
+    "human_production_cost": 200,
+    "full_restoration_cost": 200,
+    "rival_fixed": 180,
+    "rival_provider_spend": 20,
+    "retained_capacities": [1, 0.9, 0.75, 0.5, 0.25, 0],
+    "marginal_cost_multiplier": 0.25
+  },
+  "supplier_example": {
+    "marginal_cost_multiplier": 0.25,
+    "minimum_price": 1,
+    "sectors": [
+      {
+        "name": "Sector_1",
+        "paths": [
+          {"name": "incumbent", "fixed_cost": 100, "provider_spend": 80},
+          {"name": "partial_switch", "fixed_cost": 180, "provider_spend": 20},
+          {"name": "independent", "fixed_cost": 300, "provider_spend": 0}
+        ]
+      },
+      {
+        "name": "Sector_2",
+        "paths": [
+          {"name": "incumbent", "fixed_cost": 100, "provider_spend": 80},
+          {"name": "independent", "fixed_cost": 260, "provider_spend": 0}
+        ]
+      }
+    ]
+  },
+  "software_application": {
+    "reference_submission": "20260217_mini-v2.0.0_claude-4-5-opus-high",
+    "quarterly_volume": 1000,
+    "human_cost_per_output": 80,
+    "horizon_quarters": 20,
+    "initial_availability_rule": "equal_to_initial_human_output",
+    "review_hours_available": null,
+    "agent_output_capacity": 1,
+    "annual_discount_rate": 0,
+    "carrying_cost_per_quarter": 0,
+    "restoration_cost_basis": "USD per quarterly output unit times volume times (1-K)",
+    "restoration_profiles": {
+      "low": {"cost_per_quarterly_output": 5, "delay_quarters": 0, "ramp_quarters": 1},
+      "medium": {"cost_per_quarterly_output": 20, "delay_quarters": 1, "ramp_quarters": 4},
+      "high": {"cost_per_quarterly_output": 50, "delay_quarters": 4, "ramp_quarters": 12}
+    },
+    "portfolio_mapping_note": "Supplier IDs below are illustrative assignments, not inferred billing providers.",
+    "portfolio_configurations": [
+      {"submission": "20260217_mini-v2.0.0_claude-4-5-opus-high", "supplier": "illustrative_supplier_A"},
+      {"submission": "20260217_mini-v2.0.0_gemini-3-flash-high", "supplier": "illustrative_supplier_B"},
+      {"submission": "20260217_mini-v2.0.0_kimi-k2-5-high", "supplier": "illustrative_supplier_C"}
+    ],
+    "portfolio_allocations": {
+      "concentrated": [0.8, 0.1, 0.1],
+      "balanced": [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]
+    },
+    "sensitivity_agent_share": 0.75,
+    "sensitivity_capacity": 0.25,
+    "sensitivity_price": 2,
+    "sensitivity_profile": "medium",
+    "sensitivities": {
+      "horizons": [12, 40],
+      "annual_discount_rates": [0.05],
+      "human_costs": [40, 160],
+      "acceptance_factors": [0.75, 0.5],
+      "review_minutes_per_evaluated_task": [10, 30],
+      "review_hourly_wage": 80,
+      "rework_costs_per_evaluated_task": [5, 10],
+      "pipeline": [
+        {"name": "moderate", "additional_delay": 2, "ramp_multiplier": 1.5},
+        {"name": "strong", "additional_delay": 4, "ramp_multiplier": 2}
+      ]
+    }
+  },
+  "hypothetical_firms": [
+    {"name": "A", "annual_volume": 100000, "agent_share": 0.3, "retained_capacity": 0.9},
+    {"name": "B", "annual_volume": 250000, "agent_share": 0.75, "retained_capacity": 0.4},
+    {"name": "C", "annual_volume": 50000, "agent_share": 0.95, "retained_capacity": 0.15},
+    {"name": "D", "annual_volume": null, "agent_share": 0.85, "retained_capacity": 0.9}
+  ]
+}

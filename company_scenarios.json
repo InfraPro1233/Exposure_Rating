@@ -1,0 +1,120 @@
+{
+  "provenance": "Hypothetical illustrations, not estimates of real firms or institutional capacity.",
+  "basis": {
+    "cost_unit": "normalized_cost_units",
+    "output_unit": "one company's current affected-AI workload basket per quarter",
+    "horizon_quarters": 20,
+    "annual_discount_rate": 0
+  },
+  "price_multipliers": [0.5, 0.75, 1, 1.25, 1.5, 2, 3, 6, 12],
+  "experiment_settings": {
+    "provenance": "Curated hypothetical sensitivity ranges, not confidence intervals or forecasts.",
+    "case_names": ["depleted_capacity_with_rival", "depleted_capacity_without_rival"],
+    "capability_grid": [0, 0.25, 0.5, 0.75, 1],
+    "available_share_grid": [0, 0.25, 0.5, 0.75, 1],
+    "incumbent_spend_grid": [0, 40, 80, 160],
+    "horizon_grid": [12, 20, 40],
+    "annual_discount_rates": [0, 0.05, 0.1],
+    "rival_residual_shares": [0, 0.25, 0.5, 0.75, 1],
+    "rival_switching_costs": [0, 20, 1000],
+    "selected_provider_spending_shares": [1, 0.8, 0.5, 0.3333333333333333],
+    "comparison_price_multiplier": 2
+  },
+  "shared_capacity_experiment": {
+    "provenance": "Independent hypothetical shared-capacity example; NOT derived from or aggregated across the company cases.",
+    "sector_workloads": [
+      {"name": "sector_1", "output_unit": "sector-1 affected workload basket per quarter", "human_hours_for_full_workload": 8, "ai_spending_floor_per_quarter": 80},
+      {"name": "sector_2", "output_unit": "sector-2 affected workload basket per quarter", "human_hours_for_full_workload": 12, "ai_spending_floor_per_quarter": 60}
+    ],
+    "capacity_schedules": {
+      "capacity_available": [20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20],
+      "persistent_shortage": [5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5],
+      "restoration_with_transition": [0,0,0,0,2,4,6,8,10,12,14,16,18,20,20,20,20,20,20,20]
+    },
+    "capacity_unit": "comparable productive human hours per quarter, net of review and training",
+    "floor_assumption": "Every qualified common-shock AI route costs at least the supplied floor times its remaining affected output share.",
+    "scope": "Price-exposure bound only; capacity supply is exogenous, not an optimized policy or rebuilding expenditure estimate."
+  },
+  "institutional_assumptions": {
+    "retained_capacity_activation": {
+      "provenance": "Hypothetical restoration assumptions.",
+      "full_reconstitution_cost": 200,
+      "cost_rule": "full_reconstitution_cost_times_one_minus_K",
+      "delay_quarters": 0,
+      "ramp_quarters": 1,
+      "human_substitution_path_feasible": true,
+      "capacity_source": "Redeploy retained skills and rebuild organization-specific knowledge.",
+      "coverage": "Company-facing reconstruction burden; not an estimate of national rebuilding expenditure."
+    },
+    "institutional_shortage": {
+      "provenance": "Hypothetical restoration assumptions.",
+      "full_reconstitution_cost": 200,
+      "cost_rule": "full_reconstitution_cost_times_one_minus_K",
+      "delay_quarters": 4,
+      "ramp_quarters": 12,
+      "human_substitution_path_feasible": true,
+      "capacity_source": "New training, workforce re-entry and productivity development under a constrained talent pipeline.",
+      "coverage": "Company-facing reconstruction burden; recruiting from another covered employer does not add aggregate capacity."
+    }
+  },
+  "company_cases": [
+    {
+      "name": "retained_human_capacity",
+      "institutional_profile": "retained_capacity_activation",
+      "company_inputs": {
+        "provenance": "Hypothetical company inputs.",
+        "unaffected_cost_per_quarter": 100,
+        "other_ai_spend_per_quarter": 0,
+        "incumbent_ai_spend_per_quarter": 80,
+        "replacement_human_cost_per_quarter": 100,
+        "retained_capability": 0.9,
+        "immediately_replaceable_ai_output_share": 0.9,
+        "review_hours_per_ai_basket": 0,
+        "dedicated_review_hours_available": null,
+        "feasible_rivals": []
+      }
+    },
+    {
+      "name": "depleted_capacity_with_rival",
+      "institutional_profile": "institutional_shortage",
+      "company_inputs": {
+        "provenance": "Hypothetical company inputs.",
+        "unaffected_cost_per_quarter": 100,
+        "other_ai_spend_per_quarter": 0,
+        "incumbent_ai_spend_per_quarter": 80,
+        "replacement_human_cost_per_quarter": 100,
+        "retained_capability": 0.2,
+        "immediately_replaceable_ai_output_share": 0,
+        "review_hours_per_ai_basket": 0,
+        "dedicated_review_hours_available": null,
+        "feasible_rivals": [
+          {
+            "name": "qualified_rival",
+            "feasible": true,
+            "fixed_cost_per_quarter": 185,
+            "other_provider_ai_spend_per_quarter": 85,
+            "residual_incumbent_spend_per_quarter": 0,
+            "one_time_switching_cost": 20,
+            "qualification": "Hypothetical same-output, same-quality, sufficient-capacity alternative."
+          }
+        ]
+      }
+    },
+    {
+      "name": "depleted_capacity_without_rival",
+      "institutional_profile": "institutional_shortage",
+      "company_inputs": {
+        "provenance": "Hypothetical company inputs.",
+        "unaffected_cost_per_quarter": 100,
+        "other_ai_spend_per_quarter": 0,
+        "incumbent_ai_spend_per_quarter": 80,
+        "replacement_human_cost_per_quarter": 100,
+        "retained_capability": 0.2,
+        "immediately_replaceable_ai_output_share": 0,
+        "review_hours_per_ai_basket": 0,
+        "dedicated_review_hours_available": null,
+        "feasible_rivals": []
+      }
+    }
+  ]
+}
